@@ -1,9 +1,8 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
-  <header></header>
-
-  <main></main>
+  <router-view></router-view>
 </template>
 
 <style lang="scss"></style>

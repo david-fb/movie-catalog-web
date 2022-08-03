@@ -12,4 +12,10 @@ module.exports = {
   rules: {
     semi: ['error', 'always'],
   },
+  'vue/multi-word-component-names': [
+    'error',
+    {
+      ignores: [],
+    },
+  ],
 };
