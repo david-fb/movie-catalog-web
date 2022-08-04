@@ -1,6 +1,6 @@
 <template>
   <ul class="Menu">
-    <li class="Menu__item active">
+    <li class="Menu__item">
       <router-link to="/">Movies</router-link>
     </li>
     <li class="Menu__item">
@@ -40,10 +40,6 @@
     & a:hover {
       color: $primary-color;
     }
-  }
-
-  .active {
-    color: $primary-color;
   }
 }
 </style>
