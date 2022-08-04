@@ -43,7 +43,7 @@
 </g>
 </svg>
 </template>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 	svg:hover {
 		fill: white;
 	}
