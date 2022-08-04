@@ -18,6 +18,7 @@ import UserMenu from './UserMenu.vue';
   align-items: center;
   width: 100%;
   padding: 20px;
+  z-index: 2;
 
   &__logo {
     width: 100px;

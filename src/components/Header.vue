@@ -1,16 +1,18 @@
 <script setup>
 import Nav from './Nav.vue';
+import HeaderSlider from './HeaderSlider.vue';
 </script>
 <template>
   <header class="Header">
     <Nav />
+    <header-slider />
   </header>
 </template>
 <styles lang="scss">
-.Header {
-  @import '../assets/variables';
+@import '../assets/variables';
 
-  background-color: $text-color;
-  min-height: 500px;
+.Header {
+  min-height: 800px;
+  position: relative;
 }
 </styles>

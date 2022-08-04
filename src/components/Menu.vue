@@ -30,6 +30,7 @@
     & > a {
       text-decoration: none;
       color: $header-text-color;
+      font-weight: 400;
 
       &.router-link-exact-active {
         color: $primary-color;
