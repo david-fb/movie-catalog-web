@@ -1,12 +1,15 @@
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import AddFavoriteButton from './AddFavoriteButton.vue';
 import GridIcon from './icons/GridIcon.vue';
 import ListIcon from './icons/ListIcon.vue';
 import SearchIcon from './icons/SearchIcon.vue';
 import StarIcon from './icons/StarIcon.vue';
+import ModalMovieDetails from './ModalMovieDetails.vue';
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
+
+const showModal = ref(false);
 
 const movies = reactive([
     {
@@ -147,7 +150,7 @@ const movies = reactive([
                 </div>
             </div>
             <ul class="MovieList__grid">
-                <li v-for="movie in movies" class="MovieList__grid__item">
+                <li v-for="movie in movies" class="MovieList__grid__item" @click="showModal = true">
                     <img :src="imageBaseUrl + movie.poster_path" loading="lazy"/>
                     <div >
                         <h3>{{movie.title}}</h3>
@@ -157,6 +160,7 @@ const movies = reactive([
                         </div>
                     </div>
                 </li>
+                    <modal-movie-details :show="showModal" @close="showModal = false"/>
             </ul>
         </section>
     </main>
