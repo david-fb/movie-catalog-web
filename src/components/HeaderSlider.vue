@@ -1,9 +1,10 @@
 <script setup>
-import { ref } from 'vue';
-import PlayIcon from './icons/PlayIcon.vue';
+import { reactive } from 'vue';
 import dayjs from 'dayjs';
+import PlayIcon from './icons/PlayIcon.vue';
+import ArrowIcon from './icons/ArrowIcon.vue';
 
-const imageBaseUrl = ref("https://image.tmdb.org/t/p/original");
+const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 
 const genres = [
     {
@@ -85,9 +86,7 @@ const genres = [
 ]
 
 function getMovieGenres (movieGenres) {
-    console.log(movieGenres);
     const res = genres.filter((genre) => movieGenres.includes(genre.id)); 
-    console.log({res});
     return res;
 }
 
@@ -95,7 +94,7 @@ function formateDate (date) {
     return dayjs(date).format('DD MMM YYYY');
 }
 
-const movies = ref([
+const movies = reactive([
     {
       "adult": false,
       "backdrop_path": "/p1F51Lvj3sMopG948F5HsBbl43C.jpg",
@@ -199,14 +198,36 @@ const movies = ref([
     
   ])
 
+let state = reactive({
+    sliderActive: 0,
+});
+
+function moveSlider(index) {
+    state.sliderActive = index;
+    const sliderFirstItem = document.querySelector('.HeaderSlider__item');
+    const elementHeight = sliderFirstItem.getBoundingClientRect().height;
+    sliderFirstItem.style.marginTop = `-${index * 800}px`
+}
+
+function moveSLiderWithArrow(amount) {
+    let result = state.sliderActive + amount;
+    if(result < 0) {
+        result = movies.length - 1;
+    }
+    if(result > movies.length - 1) {
+        result = 0;
+    }
+    moveSlider(result);
+}
+
 </script>
 <template>
     <section class="HeaderSlider">
         <ul class="HeaderSlider__dots">
-            <li v-for="movie in movies"></li>
+            <li v-for="(movie, index) in movies" :class="{active: index === state.sliderActive}" @click="moveSlider(index)"></li>
         </ul>
         <div class="HeaderSlider__item" v-for="movie in movies">
-            <img :src="imageBaseUrl + movie.backdrop_path" lazy/>
+            <img :src="imageBaseUrl + movie.backdrop_path" loading="lazy"/>
             <div class="HeaderSlider__item__info">
                 <h2 class="title">{{movie.title}}</h2>
                 <ul class="genres">
@@ -218,6 +239,10 @@ const movies = ref([
                 <p>In theaters</p>
                 <p class="date">{{formateDate(movie.release_date)}} (USA)</p>
             </div>
+        </div>
+        <div class="HeaderSlider__arrows">
+            <ArrowIcon rotate="0" @click="moveSLiderWithArrow(-1)"/>
+            <ArrowIcon rotate="180" @click="moveSLiderWithArrow(1)"/>
         </div>
     </section>
 </template>
@@ -324,6 +349,20 @@ const movies = ref([
                 background-color: rgba($color: #ffffff, $alpha: 1);
             }
         }
+
+        .active {
+            background-color: rgba($color: #ffffff, $alpha: 1);
+        }
+    }
+
+    &__arrows {
+        position: absolute;
+        right: 50px;
+        gap: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
     }
 }
 </styles>
