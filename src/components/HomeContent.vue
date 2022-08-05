@@ -104,7 +104,7 @@ const selectedMovie = ref({});
             display: flex;
             gap: 60px;
 
-            & li {
+            & > li {
                 text-transform: uppercase;
                 color: $text-color;
                 height: 80px;
@@ -171,7 +171,7 @@ const selectedMovie = ref({});
                     list-style: none;
                     display: flex;
                     gap: 10px;
-                    overflow: auto;
+                    flex-wrap: wrap;
 
                     & > li {
                         color: $primary-color;
@@ -297,6 +297,67 @@ const selectedMovie = ref({});
         display: grid;
         place-items: center;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 1130px) {
+    .MovieList__control {
+        & .range {
+            width: 500px;
+        }
+        & .search {
+            width: 340px;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .MovieList__grid{
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .MovieList__control {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 975px) {
+
+    .MovieList__nav {
+        gap: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        &__list {
+            & > li {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+@media (max-width: 560px) {
+    .MovieList__control {
+        & .range {
+            width: 350px;
+        }
+        & .search {
+            width: 290px;
+        }
+    }
+}
+@media (max-width: 410px) {
+    .MovieList__control {
+        & .range {
+            width: 270px;
+        }
+        & .search {
+            width: 240px;
+            & > input {
+                width: 220px;
+            }
+        }
     }
 }
 </style>
