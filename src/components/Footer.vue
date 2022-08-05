@@ -62,4 +62,10 @@ import InstagramIcon from './icons/InstagramIcon.vue'
         cursor: pointer;
     }
 }
+
+@media (max-width: 580px){
+    .Footer-info > ul {
+        bottom: 0;
+    }
+}
 </style>
