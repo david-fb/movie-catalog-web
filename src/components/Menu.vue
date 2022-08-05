@@ -42,4 +42,10 @@
     }
   }
 }
+
+@media (max-width: 720px) {
+  .Menu {
+    display: none;
+  }
+}
 </style>

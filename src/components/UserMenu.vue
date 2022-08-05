@@ -46,4 +46,10 @@
   flex-direction: column;
   gap: 5px;
 }
+
+@media (max-width: 720px) {
+  .ToggleMenu {
+    display: none;
+  }
+}
 </style>

@@ -1,7 +1,15 @@
+<script setup>
+const props = defineProps({
+	color: {
+		type: String,
+		default: '#cccccc'
+	}
+});
+</script>
 <template>
 <svg version="1.1" id="Capa_1" x="0px" y="0px"
 	 width="25px" height="21px" viewBox="0 0 92.833 92.833" style="enable-background:new 0 0 92.833 92.833;"
-	 xml:space="preserve" fill="#cccccc">
+	 xml:space="preserve" :fill="props.color">
 <g>
 	<g>
 		<path d="M89.834,1.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V4.75

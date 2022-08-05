@@ -1,6 +1,7 @@
 <script setup>
 import Menu from './Menu.vue';
 import UserMenu from './UserMenu.vue';
+import ListIcon from './icons/ListIcon.vue';
 </script>
 <template>
   <nav class="Nav">
@@ -9,6 +10,7 @@ import UserMenu from './UserMenu.vue';
     </router-link>
     <Menu />
     <user-menu />
+    <button class="openMobileMenu"><list-icon color="#000000"/></button>
   </nav>
 </template>
 <style lang="scss">
@@ -24,4 +26,18 @@ import UserMenu from './UserMenu.vue';
     width: 100px;
   }
 }
+
+.openMobileMenu {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .openMobileMenu{
+    display: block;
+  }
+}
+
 </style>
