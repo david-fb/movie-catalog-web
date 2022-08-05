@@ -1,14 +1,17 @@
-# movie-catalog
 
-This template should help get you started developing with Vue 3 in Vite.
+# Movie Catalog Web
 
-## Recommended IDE Setup
+Data from the [themoviedb](https://www.themoviedb.org/), you need to register in tmdb to obtain an api key
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
+## Environment Variables
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To run this project, you will need to add the following environment variables to your .env.local file
+
+```
+VITE_API_KEY=
+VITE_API_BASE_URL=
+```
 
 ## Project Setup
 
@@ -33,3 +36,8 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## Deploy on Vercel
+
+- https://movie-catalog-web.vercel.app/
+
