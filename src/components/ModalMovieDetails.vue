@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import { useStore } from '../stores/movies';
+import HeartIcon from './icons/HeartIcon.vue';
+import ThumbUpIcon from './icons/ThumbUpIcon.vue';
+import AwardsIcon from './icons/AwardsIcon.vue';
 const props = defineProps({
   show: Boolean,
   movie: Object
@@ -61,9 +64,18 @@ function handleMouseLeave() {
                 </div>
                 <div class="movie-info">
                     <ul>
-                        <li>Raiting</li>
-                        <li>Score</li>
-                        <li>Awards</li>
+                        <li>
+                          <span><heart-icon />{{movie.vote_average}}</span>
+                          <p>Raiting</p>
+                        </li>
+                        <li>
+                          <span><thumb-up-icon />{{movie.vote_count}}</span>
+                          <p>Score</p>
+                        </li>
+                        <li>
+                          <span><awards-icon />12</span>
+                          <p>Awards</p>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -220,6 +232,7 @@ function handleMouseLeave() {
 
         & > li {
             color: #53b6e8;
+            white-space: nowrap;
         }
     }
     &-classification {
@@ -239,6 +252,24 @@ function handleMouseLeave() {
         justify-content: space-around;
         padding: 10px;
         align-items: center;
+
+        & > li {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          & > span {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 18px;
+          }
+
+          > p {
+            font-size: 12px;
+          }
+        }
     }
 }
 

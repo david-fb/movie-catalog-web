@@ -6,6 +6,7 @@ import ListIcon from './icons/ListIcon.vue';
 import SearchIcon from './icons/SearchIcon.vue';
 import StarIcon from './icons/StarIcon.vue';
 import DotsIcon from './icons/DotsIcon.vue';
+import HeartIcon from './icons/HeartIcon.vue';
 import ModalMovieDetails from './ModalMovieDetails.vue';
 import { useStore } from '../stores/movies';
 import { storeToRefs } from 'pinia';
@@ -63,7 +64,7 @@ const selectedMovie = ref({});
                         <ul class="genres-list">
                             <li v-for="genre in getMovieGenres(movie.genre_ids)">{{genre.name}}</li>
                         </ul>
-                        <p>{{movie.vote_average}}</p>
+                        <p><heart-icon /> {{movie.vote_average}}</p>
                         <div class="addFavorite">
                             <AddFavoriteButton />
                         </div>
@@ -171,17 +172,19 @@ const selectedMovie = ref({});
                     list-style: none;
                     display: flex;
                     gap: 10px;
-                    flex-wrap: wrap;
+                    overflow: hidden;
 
                     & > li {
                         color: $primary-color;
                         font-weight:500;
+                        white-space: nowrap;
                     }
                 }
 
                 & > p {
                     font-weight: 600;
                     font-size: 24px;
+                    margin-top: 15px;
                 }
 
                 .addFavorite {
