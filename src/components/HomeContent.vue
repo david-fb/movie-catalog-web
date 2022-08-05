@@ -5,6 +5,7 @@ import GridIcon from './icons/GridIcon.vue';
 import ListIcon from './icons/ListIcon.vue';
 import SearchIcon from './icons/SearchIcon.vue';
 import StarIcon from './icons/StarIcon.vue';
+import DotsIcon from './icons/DotsIcon.vue';
 import ModalMovieDetails from './ModalMovieDetails.vue';
 import { useStore } from '../stores/movies';
 import { storeToRefs } from 'pinia';
@@ -13,7 +14,7 @@ const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
 
 const store = useStore();
 const { movies } = storeToRefs(store);
-const { getMovieGenres } = store;
+const { getMovieGenres, loadMoreMovies } = store;
 
 const showModal = ref(false);
 
@@ -70,6 +71,8 @@ const selectedMovie = ref({});
                 </li>
                     <modal-movie-details :movie="selectedMovie" :show="showModal" @close="showModal = false"/>
             </ul>
+
+            <button class="MovieList__showMore" @click="loadMoreMovies"><dots-icon /></button>
         </section>
     </main>
 </template>
@@ -282,6 +285,18 @@ const selectedMovie = ref({});
                 cursor: pointer;
             }
         }
+    }
+
+    &__showMore {
+        border: none;
+        width: 50px;
+        aspect-ratio: 1 / 1;
+        background: $primary-color;
+        margin: 70px auto 0;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
     }
 }
 </style>

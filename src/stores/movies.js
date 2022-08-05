@@ -9,6 +9,9 @@ export const useStore = defineStore('main', () => {
 
   let headerMovies = ref([]);
 
+  let acutalPage = 1;
+  let totalPages = 1;
+
   const genres = ref([]);
 
   function getMovieGenres(movieGenres) {
@@ -24,7 +27,18 @@ export const useStore = defineStore('main', () => {
     this.moviesData = { ...data };
     this.movies = [...data.results];
     this.headerMovies = [...data.results.slice(0, 5)];
+    this.totalPages = data.total_pages;
+    this.actualPage = data.page;
   }
 
-  return { movies, headerMovies, genres, getMovieGenres, loadMoviesInTheatres };
+  async function loadMoreMovies() {
+    const queryPage = this.actualPage + 1;
+    if (queryPage > this.totalPages) return;
+    const { data } = await getMoviesInTheatres(queryPage);
+    this.moviesData = { ...this.moviesData, ...data };
+    this.movies = [...this.movies, ...data.results];
+    this.actualPage = data.page;
+  }
+
+  return { movies, headerMovies, genres, getMovieGenres, loadMoviesInTheatres, loadMoreMovies };
 });
