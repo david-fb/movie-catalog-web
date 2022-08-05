@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia';
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/original";
 const store = useStore();
-const { movies } = storeToRefs(store);
+const { headerMovies: movies } = storeToRefs(store);
 const { getMovieGenres } = store;
 
 function formateDate (date) {
