@@ -1,52 +1,34 @@
 <script setup>
 import { ref } from 'vue';
 const props = defineProps({
-  show: Boolean
+  show: Boolean,
+  movie: Object
 })
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
 
-const movie = 
-    {
-      "adult": false,
-      "backdrop_path": "/p1F51Lvj3sMopG948F5HsBbl43C.jpg",
-      "genre_ids": [
-        28,
-        12,
-        14
-      ],
-      "id": 616037,
-      "original_language": "en",
-      "original_title": "Thor: Love and Thunder",
-      "overview": "After his retirement is interrupted by Gorr the God Butcher, a galactic killer who seeks the extinction of the gods, Thor enlists the help of King Valkyrie, Korg, and ex-girlfriend Jane Foster, who now inexplicably wields Mjolnir as the Mighty Thor. Together they embark upon a harrowing cosmic adventure to uncover the mystery of the God Butcher’s vengeance and stop him before it’s too late.",
-      "popularity": 13162.608,
-      "poster_path": "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
-      "release_date": "2022-07-06",
-      "title": "Thor: Love and Thunder",
-      "video": false,
-      "vote_average": 6.7,
-      "vote_count": 1554
-    };
-
 const modalContainerRef = ref(null);
+const modalWrapperRef = ref(null);
 
 function handleMouseMove(evt) {
     const maxRotation = 10;
-    const cardBound = modalContainerRef.value.getBoundingClientRect();
-    const cardWidth = cardBound.width;
-    const cardHeight = cardBound.height;
-    const centerX = cardBound.left + cardWidth/2;
-    const centerY = cardBound.top+ cardHeight/2;
+    const cardBound = modalContainerRef.value?.getBoundingClientRect();
+    const cardWidth = cardBound?.width;
+    const cardHeight = cardBound?.height;
+    const centerX = cardBound?.left + cardWidth/2;
+    const centerY = cardBound?.top+ cardHeight/2;
     const mouseX = evt.clientX - centerX;
     const mouseY = evt.clientY - centerY;
 
     const rotationX = ((-1)*maxRotation*mouseY /(cardHeight/2)).toFixed(2);
     const rotationY = ((+1)*maxRotation*mouseX /(cardWidth/2)).toFixed(2);
 
+    if(!modalContainerRef.value) return;
     modalContainerRef.value.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 }
 
 function handleMouseLeave() {
+    if(!modalContainerRef.value) return;
     modalContainerRef.value.style.transform = `rotateX(0deg) rotateY(0deg)`
 }
 
@@ -55,7 +37,7 @@ function handleMouseLeave() {
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
-      <div class="modal-wrapper" @mousemove="handleMouseMove($event)" @mouseleave="handleMouseLeave">
+      <div ref="modalWrapperRef" class="modal-wrapper" @mousemove="handleMouseMove($event)" @mouseleave="handleMouseLeave">
         <div ref="modalContainerRef" class="modal-container">
           <div class="modal-image">
             <img :src="imageBaseUrl + movie.poster_path" loading="lazy"/>

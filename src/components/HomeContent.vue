@@ -11,6 +11,8 @@ const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
 
 const showModal = ref(false);
 
+const selectedMovie = ref({});
+
 const movies = reactive([
     {
       "adult": false,
@@ -150,7 +152,7 @@ const movies = reactive([
                 </div>
             </div>
             <ul class="MovieList__grid">
-                <li v-for="movie in movies" class="MovieList__grid__item" @click="showModal = true">
+                <li v-for="movie in movies" class="MovieList__grid__item" @click="selectedMovie = movie; showModal = true">
                     <img :src="imageBaseUrl + movie.poster_path" loading="lazy"/>
                     <div >
                         <h3>{{movie.title}}</h3>
@@ -160,7 +162,7 @@ const movies = reactive([
                         </div>
                     </div>
                 </li>
-                    <modal-movie-details :show="showModal" @close="showModal = false"/>
+                    <modal-movie-details :movie="selectedMovie" :show="showModal" @close="showModal = false"/>
             </ul>
         </section>
     </main>
