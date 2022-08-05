@@ -279,4 +279,44 @@ function handleMouseLeave() {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+@media (max-width: 780px) {
+  .modal-container{
+    width: 500px;
+  }
+  .modal-container::before{
+    width: 400px;
+  }
+  .modal-container::after {
+      width: 330px;   
+  }
+  .modal-image {
+    display: none;
+  }
+}
+@media (max-width: 545px) {
+  .modal-container{
+    width: 300px;
+  }
+  .modal-container::before{
+    width: 200px;
+  }
+  .modal-container::after {
+      width: 130px;   
+  }
+  .modal-body-header {
+    width: 280px;
+  }
+  .movie-categories {
+    flex-direction: column;
+  }
+  .modal-body-buttons{
+    display: flex;
+    flex-direction: column;
+
+    & > button {
+      padding: 15px;
+    }
+  }
+}
 </style>
