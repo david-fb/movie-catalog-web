@@ -1,9 +1,12 @@
 <script setup>
 import { ref } from 'vue';
+import { useStore } from '../stores/movies';
 const props = defineProps({
   show: Boolean,
   movie: Object
-})
+});
+const store = useStore();
+const { getMovieGenres } = store;
 
 const imageBaseUrl = "https://image.tmdb.org/t/p/w400";
 
@@ -49,9 +52,7 @@ function handleMouseLeave() {
                 <h3>{{movie.title}}</h3>
                 <div class="movie-categories">
                     <ul class="movie-categories-genres">
-                        <li>Adventure</li>
-                        <li>Action</li>
-                        <li>Sci-fi</li>
+                        <li v-for="genre in getMovieGenres(movie.genre_ids)">{{genre.name}}</li>
                     </ul>
                     <ul class="movie-categories-classification">
                         <li>PG-13</li>
@@ -214,6 +215,8 @@ function handleMouseLeave() {
     align-items: center;
     &-genres {
         gap: 10px;
+        width: 230px;
+        overflow: auto;
 
         & > li {
             color: #53b6e8;
