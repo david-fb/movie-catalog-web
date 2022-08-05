@@ -109,6 +109,7 @@ function moveSLiderWithArrow(amount) {
                 display: flex;
                 list-style: none;
                 gap: 30px;
+                flex-wrap: wrap;
 
                 li {
                     color: $header-text-color;
@@ -180,6 +181,33 @@ function moveSLiderWithArrow(amount) {
         transform: translateY(-50%);
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media (max-width: 1360px) {
+    .HeaderSlider__item__info {
+        padding-left: 75px;
+    }
+}
+@media (max-width: 750px) {
+    .HeaderSlider__item__info {
+        .title {
+            font-size: 40px;
+            line-height: 1;
+        }
+        .genres {
+            gap: 25px;
+        }
+    }
+}
+@media (max-width: 500px) {
+    .HeaderSlider__arrows {
+        top: 78%;
+    }
+    .HeaderSlider__item__info {
+        .genres {
+            gap: 10px;
+        }
     }
 }
 </styles>
